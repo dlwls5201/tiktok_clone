@@ -42,7 +42,7 @@ class _EmailScreenState extends State<EmailScreen> {
     return null;
   }
 
-  void _onScaffoldTab() {
+  void _onScaffoldTap() {
     FocusScope.of(context).unfocus();
   }
 
@@ -54,7 +54,7 @@ class _EmailScreenState extends State<EmailScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _onScaffoldTab,
+      onTap: _onScaffoldTap,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(

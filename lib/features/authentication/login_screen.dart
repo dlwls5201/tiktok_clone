@@ -7,7 +7,7 @@ import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  void onSignUpTab(BuildContext context) {
+  void onSignUpTap(BuildContext context) {
     Navigator.of(context).pop();
   }
 
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Gaps.h5,
             GestureDetector(
-              onTap: () => onSignUpTab(context),
+              onTap: () => onSignUpTap(context),
               child: Text(
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,

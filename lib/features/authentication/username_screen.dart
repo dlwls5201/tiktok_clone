@@ -32,7 +32,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
     super.dispose();
   }
 
-  void _onNextTab() {
+  void _onNextTap() {
     if (_username.isEmpty) {
       return;
     }
@@ -92,7 +92,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             ),
             Gaps.v28,
             GestureDetector(
-                onTap: _onNextTab,
+                onTap: _onNextTap,
                 child: FormButton(title: "Next", disabled: _username.isEmpty)),
           ],
         ),
