@@ -4,6 +4,7 @@ import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
 
 import '../../constants/Gaps.dart';
+import '../videos/video_timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -41,14 +42,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: const Center(
-              child: Text(
-                "Home",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-            ),
+            child: const VideoTimeLineScreen()
           ),
           Offstage(
             offstage: _selectedIndex != 1,
