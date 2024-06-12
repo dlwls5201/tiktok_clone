@@ -1,27 +1,17 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 import '../model/assignment_thread_model.dart';
-import 'assignment_thread_bottom_sheet_widget.dart';
 
-class AssignmentThread extends StatelessWidget {
-  const AssignmentThread({
+class AssignmentCommentThread extends StatelessWidget {
+  const AssignmentCommentThread({
     super.key,
     required this.model,
   });
 
   final ThreadModel model;
-
-  void _onReportTap(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) => const AssignmentThreadBottomSheet(),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,36 +97,6 @@ class AssignmentThread extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Gaps.h6,
-                          const FaIcon(
-                            FontAwesomeIcons.ribbon,
-                            color: Colors.blue,
-                            size: Sizes.size16,
-                          ),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const Text(
-                                  "2h",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: Sizes.size16,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ),
-                                Gaps.h6,
-                                GestureDetector(
-                                  onTap: () => _onReportTap(context),
-                                  child: const FaIcon(
-                                    FontAwesomeIcons.ellipsis,
-                                    size: Sizes.size16,
-                                    color: Colors.black,
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
                         ],
                       ),
                       model.context.isNotEmpty
@@ -182,102 +142,12 @@ class AssignmentThread extends StatelessWidget {
                               ),
                             )
                           : Container(),
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: Sizes.size16,
-                        ),
-                        child: const Row(
-                          children: [
-                            FaIcon(
-                              FontAwesomeIcons.heart,
-                            ),
-                            Gaps.h14,
-                            FaIcon(
-                              FontAwesomeIcons.comment,
-                            ),
-                            Gaps.h14,
-                            FaIcon(
-                              FontAwesomeIcons.arrowsRotate,
-                            ),
-                            Gaps.h14,
-                            FaIcon(
-                              FontAwesomeIcons.paperPlane,
-                            ),
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 )
               ],
             ),
           ),
-          Gaps.v5,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 55,
-                height: 45,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 10,
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/5jFH_c97fBV1fUMnTm5gsYwsC_hvchJqwl9vHrsMQq5y5sUnD4ppEaAchSZiI5bh4EuvtFd02obDFb-m6zdKYg.webp",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/APF_M3b3EO3CM9_EUyRb44a2CHU8a-uVgeZE0UNYkoePoCAGxIeH06nbZW6tiV5iSeaQx0Pp-LNdkrRSixVcdw.webp",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 15,
-                      bottom: 0,
-                      child: SizedBox(
-                        width: 15,
-                        height: 15,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/1JNGu2hM7iPsK46em0cLSJFpKpnnwnWMrQXZnq3D9-xCKQUhNgObpNuJTgM0IfNJ3q-LH7jDC-YBySfIgS7SJA.webp",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Gaps.h10,
-              Text(
-                "${Random().nextInt(100)} replies, ${Random().nextInt(999)} likes",
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: Sizes.size14,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );

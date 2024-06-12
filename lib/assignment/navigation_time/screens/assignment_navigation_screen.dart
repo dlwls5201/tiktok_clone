@@ -3,24 +3,31 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/assignment/navigation_time/widgets/assignment_nav_tab_widget.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
+import '../widgets/assignment_new_thread_bottom_sheet_widget.dart';
 import 'assignment_thread_home_screen.dart';
 
 class AssignmentNavigationScreen extends StatefulWidget {
   const AssignmentNavigationScreen({super.key});
 
   @override
-  State<AssignmentNavigationScreen> createState() =>
-      _AssignmentNavigationScreenState();
+  State<AssignmentNavigationScreen> createState() => _AssignmentNavigationScreenState();
 }
 
-class _AssignmentNavigationScreenState
-    extends State<AssignmentNavigationScreen> {
+class _AssignmentNavigationScreenState extends State<AssignmentNavigationScreen> {
   int _selectedIndex = 0;
 
   void _onTap(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _onNewThreadTap() {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => const AssignmentNewThreadBottomSheet(),
+    );
   }
 
   @override
@@ -35,19 +42,6 @@ class _AssignmentNavigationScreenState
           ),
           Visibility(
             visible: _selectedIndex == 1,
-            child: Center(
-              child: Text(
-                "Screen #$_selectedIndex",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: Sizes.size48,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Visibility(
-            visible: _selectedIndex == 2,
             child: Center(
               child: Text(
                 "Screen #$_selectedIndex",
@@ -110,9 +104,9 @@ class _AssignmentNavigationScreenState
                       onTap: () => _onTap(1),
                     ),
                     AssignmentNavTab(
-                      isSelected: _selectedIndex == 2,
+                      isSelected: false,
                       icon: FontAwesomeIcons.squareCheck,
-                      onTap: () => _onTap(2),
+                      onTap: _onNewThreadTap,
                     ),
                     AssignmentNavTab(
                       isSelected: _selectedIndex == 3,
