@@ -6,6 +6,7 @@ import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 import '../model/assignment_thread_model.dart';
+import 'assignment_thread_bottom_sheet_widget.dart';
 
 class AssignmentThread extends StatelessWidget {
   const AssignmentThread({
@@ -14,6 +15,13 @@ class AssignmentThread extends StatelessWidget {
   });
 
   final ThreadModel model;
+
+  void _onReportTap(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => AssignmentThreadBottomSheet(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +113,11 @@ class AssignmentThread extends StatelessWidget {
                             color: Colors.blue,
                             size: Sizes.size16,
                           ),
-                          const Expanded(
+                          Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Text(
+                                const Text(
                                   "2h",
                                   style: TextStyle(
                                     color: Colors.grey,
@@ -118,10 +126,13 @@ class AssignmentThread extends StatelessWidget {
                                   ),
                                 ),
                                 Gaps.h6,
-                                FaIcon(
-                                  FontAwesomeIcons.ellipsis,
-                                  size: Sizes.size16,
-                                  color: Colors.black,
+                                GestureDetector(
+                                  onTap: () => _onReportTap(context),
+                                  child: const FaIcon(
+                                    FontAwesomeIcons.ellipsis,
+                                    size: Sizes.size16,
+                                    color: Colors.black,
+                                  ),
                                 )
                               ],
                             ),
@@ -151,11 +162,9 @@ class AssignmentThread extends StatelessWidget {
                               child: SizedBox(
                                 height: 150,
                                 child: PageView.builder(
-                                  controller:
-                                      PageController(viewportFraction: 0.85),
+                                  controller: PageController(viewportFraction: 0.85),
                                   itemCount: model.images.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
+                                  itemBuilder: (BuildContext context, int index) {
                                     return Container(
                                       margin: const EdgeInsets.only(
                                         right: Sizes.size10,
