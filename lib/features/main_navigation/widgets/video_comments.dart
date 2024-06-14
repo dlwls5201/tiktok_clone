@@ -50,6 +50,7 @@ class _VideoCommentsState extends State<VideoComments> {
           centerTitle: true,
           backgroundColor: Colors.grey.shade50,
           automaticallyImplyLeading: false,
+          scrolledUnderElevation: 0,
           title: const Text("22796 comments"),
           actions: [
             IconButton(
