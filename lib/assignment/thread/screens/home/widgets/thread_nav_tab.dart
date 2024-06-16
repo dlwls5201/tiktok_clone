@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../constants/sizes.dart';
+import '../../../../../constants/sizes.dart';
 
-class AssignmentNavTab extends StatelessWidget {
-  const AssignmentNavTab({
+class ThreadNavTab extends StatelessWidget {
+  const ThreadNavTab({
     super.key,
     required this.isSelected,
     required this.icon,

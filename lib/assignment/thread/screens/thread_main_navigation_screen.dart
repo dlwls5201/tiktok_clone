@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/assignment/navigation_time/widgets/assignment_nav_tab_widget.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-import '../widgets/assignment_new_thread_bottom_sheet_widget.dart';
-import 'assignment_thread_home_screen.dart';
+import 'home/thread_home_screen.dart';
+import 'home/widgets/thread_nav_tab.dart';
+import 'new_thread/new_thread_bottom_sheet.dart';
 
-class AssignmentNavigationScreen extends StatefulWidget {
-  const AssignmentNavigationScreen({super.key});
+class ThreadMainNavigationScreen extends StatefulWidget {
+  const ThreadMainNavigationScreen({super.key});
 
   @override
-  State<AssignmentNavigationScreen> createState() => _AssignmentNavigationScreenState();
+  State<ThreadMainNavigationScreen> createState() => _ThreadMainNavigationScreenState();
 }
 
-class _AssignmentNavigationScreenState extends State<AssignmentNavigationScreen> {
+class _ThreadMainNavigationScreenState extends State<ThreadMainNavigationScreen> {
   int _selectedIndex = 0;
 
   void _onTap(int index) {
@@ -26,7 +26,7 @@ class _AssignmentNavigationScreenState extends State<AssignmentNavigationScreen>
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
-      builder: (context) => const AssignmentNewThreadBottomSheet(),
+      builder: (context) => const NewThreadBottomSheet(),
     );
   }
 
@@ -38,7 +38,7 @@ class _AssignmentNavigationScreenState extends State<AssignmentNavigationScreen>
         children: [
           Visibility(
             visible: _selectedIndex == 0,
-            child: AssignmentThreadHomeScreen(),
+            child: ThreadHomeScreen(),
           ),
           Visibility(
             visible: _selectedIndex == 1,
@@ -93,27 +93,27 @@ class _AssignmentNavigationScreenState extends State<AssignmentNavigationScreen>
               Expanded(
                 child: Row(
                   children: [
-                    AssignmentNavTab(
+                    ThreadNavTab(
                       isSelected: _selectedIndex == 0,
                       icon: FontAwesomeIcons.house,
                       onTap: () => _onTap(0),
                     ),
-                    AssignmentNavTab(
+                    ThreadNavTab(
                       isSelected: _selectedIndex == 1,
                       icon: FontAwesomeIcons.magnifyingGlass,
                       onTap: () => _onTap(1),
                     ),
-                    AssignmentNavTab(
+                    ThreadNavTab(
                       isSelected: false,
                       icon: FontAwesomeIcons.squareCheck,
                       onTap: _onNewThreadTap,
                     ),
-                    AssignmentNavTab(
+                    ThreadNavTab(
                       isSelected: _selectedIndex == 3,
                       icon: FontAwesomeIcons.heart,
                       onTap: () => _onTap(3),
                     ),
-                    AssignmentNavTab(
+                    ThreadNavTab(
                       isSelected: _selectedIndex == 4,
                       icon: FontAwesomeIcons.user,
                       onTap: () => _onTap(4),

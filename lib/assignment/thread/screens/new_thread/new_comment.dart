@@ -3,10 +3,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-import '../model/assignment_thread_model.dart';
+import '../../model/thread_model.dart';
 
-class AssignmentCommentThread extends StatelessWidget {
-  const AssignmentCommentThread({
+class NewCommentThread extends StatelessWidget {
+  const NewCommentThread({
     super.key,
     required this.model,
   });

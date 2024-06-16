@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-import '../model/assignment_thread_model.dart';
-import 'assignment_thread_bottom_sheet_widget.dart';
+import '../../../model/thread_model.dart';
+import 'thread_info_bottom_sheet.dart';
 
-class AssignmentThread extends StatelessWidget {
-  const AssignmentThread({
+class Thread extends StatelessWidget {
+  const Thread({
     super.key,
     required this.model,
   });
@@ -19,7 +19,7 @@ class AssignmentThread extends StatelessWidget {
   void _onReportTap(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => const AssignmentThreadBottomSheet(),
+      builder: (context) => const ThreadInfoBottomSheet(),
     );
   }
 

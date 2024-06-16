@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/sizes.dart';
-import '../model/assignment_thread_model.dart';
-import 'assignment_thread_comment_widget.dart';
+import '../../../../constants/sizes.dart';
+import '../../model/thread_model.dart';
+import 'new_comment.dart';
 
-class AssignmentNewThreadBottomSheet extends StatefulWidget {
-  const AssignmentNewThreadBottomSheet({super.key});
+class NewThreadBottomSheet extends StatefulWidget {
+  const NewThreadBottomSheet({super.key});
 
   @override
-  State<AssignmentNewThreadBottomSheet> createState() => _AssignmentNewThreadBottomSheetState();
+  State<NewThreadBottomSheet> createState() => _NewThreadBottomSheetState();
 }
 
-class _AssignmentNewThreadBottomSheetState extends State<AssignmentNewThreadBottomSheet> {
+class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
   final TextEditingController _postController = TextEditingController();
 
   bool _isWriting = false;
@@ -92,7 +92,7 @@ class _AssignmentNewThreadBottomSheetState extends State<AssignmentNewThreadBott
                   children: [
                     ListView(
                       children: [
-                        AssignmentCommentThread(
+                        NewCommentThread(
                           model: ThreadModel(
                             name: "kiki",
                             thumb:

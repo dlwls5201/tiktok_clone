@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../model/assignment_thread_model.dart';
-import '../widgets/assignment_thread_widget.dart';
+import '../../model/thread_model.dart';
+import 'widgets/thread.dart';
 
-class AssignmentThreadHomeScreen extends StatelessWidget {
-  AssignmentThreadHomeScreen({super.key});
+class ThreadHomeScreen extends StatelessWidget {
+  ThreadHomeScreen({super.key});
 
   final items = [
     ThreadModel(
@@ -22,7 +22,8 @@ class AssignmentThreadHomeScreen extends StatelessWidget {
     ThreadModel(
       name: User.BlackPanther.name,
       thumb: User.BlackPanther.thumb,
-      context: "In my culture, death is not the end. It's more of a stepping-off point. You reach out with both hands and Bast and Sekhmet, they lead you into the green veld where you can run forever.",
+      context:
+          "In my culture, death is not the end. It's more of a stepping-off point. You reach out with both hands and Bast and Sekhmet, they lead you into the green veld where you can run forever.",
       images: [
         "https://image.ytn.co.kr/general/jpg/2018/0418/201804180949030735_d.jpg",
         "https://cdn.casenews.co.kr/news/photo/201905/2398_9196_342.jpg",
@@ -47,7 +48,8 @@ class AssignmentThreadHomeScreen extends StatelessWidget {
     ThreadModel(
       name: User.Thor.name,
       thumb: User.Thor.thumb,
-      context: "I am Thor, son of Odin, and as long as there is life in my breast... I am running out of things to say.",
+      context:
+          "I am Thor, son of Odin, and as long as there is life in my breast... I am running out of things to say.",
     ),
   ];
 
@@ -58,7 +60,7 @@ class AssignmentThreadHomeScreen extends StatelessWidget {
         itemCount: items.length,
         itemBuilder: (context, index) {
           final model = items[index];
-          return AssignmentThread(
+          return Thread(
             model: model,
           );
         },

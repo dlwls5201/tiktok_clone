@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 
-import '../../../constants/sizes.dart';
+import '../../../../../constants/sizes.dart';
 
-class AssignmentThreadBottomSheet extends StatefulWidget {
-  const AssignmentThreadBottomSheet({super.key});
+class ThreadInfoBottomSheet extends StatefulWidget {
+  const ThreadInfoBottomSheet({super.key});
 
   @override
-  State<AssignmentThreadBottomSheet> createState() => _AssignmentThreadBottomSheetState();
+  State<ThreadInfoBottomSheet> createState() => _ThreadInfoBottomSheetState();
 }
 
-class _AssignmentThreadBottomSheetState extends State<AssignmentThreadBottomSheet> {
+class _ThreadInfoBottomSheetState extends State<ThreadInfoBottomSheet> {
   final reports = [
     "I just don't like it",
     "It's unlawful content under NetzDG",
