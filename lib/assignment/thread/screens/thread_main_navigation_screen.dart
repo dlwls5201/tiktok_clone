@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/assignment/thread/screens/search/thrad_search_screen.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 import 'home/thread_home_screen.dart';
@@ -42,16 +43,7 @@ class _ThreadMainNavigationScreenState extends State<ThreadMainNavigationScreen>
           ),
           Visibility(
             visible: _selectedIndex == 1,
-            child: Center(
-              child: Text(
-                "Screen #$_selectedIndex",
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: Sizes.size48,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            child: ThreadSearchScreen(),
           ),
           Visibility(
             visible: _selectedIndex == 3,

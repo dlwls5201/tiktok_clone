@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/thread_model.dart';
+import '../../model/user.dart';
 import 'widgets/thread.dart';
 
 class ThreadHomeScreen extends StatelessWidget {
