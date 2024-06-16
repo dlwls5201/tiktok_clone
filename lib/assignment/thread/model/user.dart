@@ -44,6 +44,7 @@ enum SearchUser {
         "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/no/2020/10/08/SSI_20201008104519.jpg",
     subTitle: "I can do this all day.",
     followers: "420K",
+      isFollow: true,
   ),
   BlackPanther(
     name: "black_panther",
@@ -66,6 +67,7 @@ enum SearchUser {
     subTitle: "Let me put you on hold.",
     followers: "120K",
     isBottomIcon: true,
+    isFollow: true,
   ),
   Thor(
     name: 'thor_odinson',
@@ -76,7 +78,7 @@ enum SearchUser {
   );
 
   final String name, thumb, subTitle, followers;
-  final bool isBottomIcon;
+  final bool isBottomIcon, isFollow;
 
   const SearchUser({
     required this.name,
@@ -84,5 +86,6 @@ enum SearchUser {
     required this.subTitle,
     required this.followers,
     this.isBottomIcon = false,
+    this.isFollow = false,
   });
 }
