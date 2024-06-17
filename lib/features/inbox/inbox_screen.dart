@@ -3,13 +3,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/sizes.dart';
 import 'activity_screen.dart';
+import 'chats_screen.dart';
 
-class InboxScreen extends StatelessWidget {
+class InboxScreen extends StatefulWidget {
   const InboxScreen({super.key});
 
-  void _onDmPressed() {}
+  @override
+  State<InboxScreen> createState() => _InboxScreenState();
+}
 
-  void _onActivityTap(BuildContext context) {
+class _InboxScreenState extends State<InboxScreen> {
+  void _onDmPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ChatsScreen(),
+      ),
+    );
+  }
+
+  void _onActivityTap() {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ActivityScreen(),
@@ -22,6 +34,7 @@ class InboxScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
+        centerTitle: true,
         backgroundColor: Colors.white,
         title: const Text("Inbox"),
         actions: [
@@ -36,7 +49,7 @@ class InboxScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            onTap: () => _onActivityTap(context),
+            onTap: _onActivityTap,
             title: const Text(
               "Activity",
               style: TextStyle(

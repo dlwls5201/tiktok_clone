@@ -83,10 +83,12 @@ class _ActivityScreenState extends State<ActivityScreen> with SingleTickerProvid
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        automaticallyImplyLeading: false,
+        elevation: 1,
+        centerTitle: true,
         title: GestureDetector(
           onTap: _toggleAnimations,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
