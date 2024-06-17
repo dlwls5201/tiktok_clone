@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../constants/sizes.dart';
+import 'chat_detail_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -50,9 +51,18 @@ class _ChatsScreenState extends State<ChatsScreen> {
     _items.remove(index);
   }
 
+  void _onChatTap() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ChatDetailScreen(),
+      ),
+    );
+  }
+
   Widget _makeTitle(int index) {
     return ListTile(
       onLongPress: () => _deleteItem(index),
+      onTap: _onChatTap,
       leading: const CircleAvatar(
         radius: 30,
         foregroundImage: NetworkImage(
