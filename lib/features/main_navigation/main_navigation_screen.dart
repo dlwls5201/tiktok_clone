@@ -4,6 +4,7 @@ import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok_clone/features/user/user_profile_screen.dart';
 
 import '../../constants/Gaps.dart';
 import '../videos/video_timeline_screen.dart';
@@ -44,7 +45,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          Offstage(offstage: _selectedIndex != 0, child: const VideoTimeLineScreen(),),
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const VideoTimeLineScreen(),
+          ),
           Offstage(
             offstage: _selectedIndex != 1,
             child: const DiscoverScreen(),
@@ -52,7 +56,11 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           Offstage(
             offstage: _selectedIndex != 3,
             child: const InboxScreen(),
-          )
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const UserProfileScreen(),
+          ),
         ],
       ),
       bottomNavigationBar: BottomAppBar(
