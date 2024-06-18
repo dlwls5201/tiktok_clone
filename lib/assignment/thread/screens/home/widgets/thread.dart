@@ -12,8 +12,10 @@ class Thread extends StatelessWidget {
   const Thread({
     super.key,
     required this.model,
+    this.isShowBottomView = true,
   });
 
+  final bool isShowBottomView;
   final ThreadModel model;
 
   void _onReportTap(BuildContext context) {
@@ -213,71 +215,72 @@ class Thread extends StatelessWidget {
             ),
           ),
           Gaps.v5,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 55,
-                height: 45,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 10,
-                      child: SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/5jFH_c97fBV1fUMnTm5gsYwsC_hvchJqwl9vHrsMQq5y5sUnD4ppEaAchSZiI5bh4EuvtFd02obDFb-m6zdKYg.webp",
-                            fit: BoxFit.cover,
+          if (isShowBottomView)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 55,
+                  height: 45,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        top: 10,
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              "https://i.namu.wiki/i/5jFH_c97fBV1fUMnTm5gsYwsC_hvchJqwl9vHrsMQq5y5sUnD4ppEaAchSZiI5bh4EuvtFd02obDFb-m6zdKYg.webp",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      right: 0,
-                      child: SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/APF_M3b3EO3CM9_EUyRb44a2CHU8a-uVgeZE0UNYkoePoCAGxIeH06nbZW6tiV5iSeaQx0Pp-LNdkrRSixVcdw.webp",
-                            fit: BoxFit.cover,
+                      Positioned(
+                        right: 0,
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              "https://i.namu.wiki/i/APF_M3b3EO3CM9_EUyRb44a2CHU8a-uVgeZE0UNYkoePoCAGxIeH06nbZW6tiV5iSeaQx0Pp-LNdkrRSixVcdw.webp",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Positioned(
-                      left: 15,
-                      bottom: 0,
-                      child: SizedBox(
-                        width: 15,
-                        height: 15,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            "https://i.namu.wiki/i/1JNGu2hM7iPsK46em0cLSJFpKpnnwnWMrQXZnq3D9-xCKQUhNgObpNuJTgM0IfNJ3q-LH7jDC-YBySfIgS7SJA.webp",
-                            fit: BoxFit.cover,
+                      Positioned(
+                        left: 15,
+                        bottom: 0,
+                        child: SizedBox(
+                          width: 15,
+                          height: 15,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              "https://i.namu.wiki/i/1JNGu2hM7iPsK46em0cLSJFpKpnnwnWMrQXZnq3D9-xCKQUhNgObpNuJTgM0IfNJ3q-LH7jDC-YBySfIgS7SJA.webp",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Gaps.h10,
-              Text(
-                "${Random().nextInt(100)} replies, ${Random().nextInt(999)} likes",
-                style: const TextStyle(
-                  color: Colors.black54,
-                  fontSize: Sizes.size14,
-                  fontWeight: FontWeight.normal,
+                Gaps.h10,
+                Text(
+                  "${Random().nextInt(100)} replies, ${Random().nextInt(999)} likes",
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: Sizes.size14,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
-              ),
-            ],
-          )
+              ],
+            )
         ],
       ),
     );
