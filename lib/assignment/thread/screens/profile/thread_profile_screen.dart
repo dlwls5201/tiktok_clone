@@ -7,6 +7,7 @@ import 'package:tiktok_clone/constants/Gaps.dart';
 import '../../../../constants/sizes.dart';
 import '../../model/thread_model.dart';
 import '../home/widgets/thread.dart';
+import '../settings/thread_settings_screen.dart';
 
 class ThreadProfileScreen extends StatefulWidget {
   const ThreadProfileScreen({super.key});
@@ -63,6 +64,14 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
     ),
   ];
 
+  void _onBarsPressed() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ThreadSettingsScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -87,7 +96,7 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                     ),
                     Gaps.h12,
                     IconButton(
-                      onPressed: () {},
+                      onPressed: _onBarsPressed,
                       icon: const FaIcon(FontAwesomeIcons.barsStaggered),
                     )
                   ],
