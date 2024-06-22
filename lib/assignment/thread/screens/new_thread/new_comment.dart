@@ -1,17 +1,29 @@
+import 'dart:io';
+
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 import '../../model/thread_model.dart';
+import '../camera/thread_camera_screen.dart';
 
-class NewCommentThread extends StatelessWidget {
+class NewCommentThread extends StatefulWidget {
   const NewCommentThread({
     super.key,
     required this.model,
   });
 
   final ThreadModel model;
+
+  @override
+  State<NewCommentThread> createState() => _NewCommentThreadState();
+}
+
+class _NewCommentThreadState extends State<NewCommentThread> {
+  XFile? _selectedFile = null;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +53,7 @@ class NewCommentThread extends StatelessWidget {
                               backgroundColor: Colors.black,
                               foregroundColor: Colors.white,
                               foregroundImage: NetworkImage(
-                                model.thumb,
+                                widget.model.thumb,
                               ),
                             ),
                           ],
@@ -90,7 +102,7 @@ class NewCommentThread extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            model.name,
+                            widget.model.name,
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: Sizes.size16,
@@ -99,13 +111,13 @@ class NewCommentThread extends StatelessWidget {
                           ),
                         ],
                       ),
-                      model.context.isNotEmpty
+                      widget.model.context.isNotEmpty
                           ? Container(
                               margin: const EdgeInsets.only(
                                 top: Sizes.size6,
                               ),
                               child: Text(
-                                model.context,
+                                widget.model.context,
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontSize: Sizes.size16,
@@ -114,7 +126,7 @@ class NewCommentThread extends StatelessWidget {
                               ),
                             )
                           : Container(),
-                      model.images.isNotEmpty
+                      widget.model.images.isNotEmpty
                           ? Container(
                               margin: const EdgeInsets.only(
                                 top: Sizes.size16,
@@ -123,7 +135,7 @@ class NewCommentThread extends StatelessWidget {
                                 height: 150,
                                 child: PageView.builder(
                                   controller: PageController(viewportFraction: 0.85),
-                                  itemCount: model.images.length,
+                                  itemCount: widget.model.images.length,
                                   itemBuilder: (BuildContext context, int index) {
                                     return Container(
                                       margin: const EdgeInsets.only(
@@ -132,7 +144,7 @@ class NewCommentThread extends StatelessWidget {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(20),
                                         child: Image.network(
-                                          model.images[index],
+                                          widget.model.images[index],
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -142,9 +154,29 @@ class NewCommentThread extends StatelessWidget {
                               ),
                             )
                           : Container(),
+                      Gaps.v16,
+                      _selectedFile == null
+                          ? GestureDetector(
+                              onTap: () async {
+                                final result = await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => const ThreadCameraScreen(),
+                                  ),
+                                );
+
+                                if (result != null && result is XFile) {
+                                  print("result: $result");
+                                  setState(() {
+                                    _selectedFile = result;
+                                  });
+                                }
+                              },
+                              child: const FaIcon(FontAwesomeIcons.paperclip),
+                            )
+                          : Image.file(File(_selectedFile!.path))
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

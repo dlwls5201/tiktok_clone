@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants/sizes.dart';
@@ -15,6 +16,8 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
   final TextEditingController _postController = TextEditingController();
 
   bool _isWriting = false;
+
+  XFile? _selectedFile = null;
 
   @override
   void initState() {
