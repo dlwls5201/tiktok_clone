@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../constants/sizes.dart';
+import '../../../utils.dart';
 
 class InterestButton extends StatefulWidget {
   const InterestButton({
@@ -34,7 +35,11 @@ class _InterestButtonState extends State<InterestButton> {
           horizontal: Sizes.size16,
         ),
         decoration: BoxDecoration(
-          color: _isSelected ? Theme.of(context).primaryColor : Colors.white,
+          color: _isSelected
+              ? Theme.of(context).primaryColor
+              : isDarkMode(context)
+                  ? Colors.grey.shade700
+                  : Colors.white,
           border: Border.all(
             color: Colors.black.withOpacity(0.1),
           ),

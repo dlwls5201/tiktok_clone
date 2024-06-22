@@ -71,8 +71,7 @@ class _InterestScreenState extends State<InterestScreen> {
   }
 
   void _onNextTap() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const TutorialScreen()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const TutorialScreen()));
   }
 
   @override
@@ -127,42 +126,29 @@ class _InterestScreenState extends State<InterestScreen> {
                 Wrap(
                   runSpacing: Sizes.size12,
                   spacing: Sizes.size12,
-                  children: [
-                    for (var interest in interests)
-                      InterestButton(interest: interest)
-                  ],
+                  children: [for (var interest in interests) InterestButton(interest: interest)],
                 )
               ],
             ),
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        height: 110,
-        elevation: 2,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            bottom: Sizes.size20,
-            top: Sizes.size8,
+      bottomNavigationBar: GestureDetector(
+        onTap: _onNextTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: Sizes.size16 + Sizes.size2,
           ),
-          child: GestureDetector(
-            onTap: _onNextTap,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size16 + Sizes.size2,
-              ),
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
-              child: const Text(
-                'Next',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: Sizes.size16,
-                ),
-              ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+          ),
+          child: const Text(
+            'Next',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              fontSize: Sizes.size16,
             ),
           ),
         ),
