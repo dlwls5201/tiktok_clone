@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/assignment/thread/screens/thread_main_navigation_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
 
 import 'constants/sizes.dart';
@@ -50,8 +51,8 @@ class TikTokApp extends StatelessWidget {
         ),
         primaryColor: const Color(0xFFE9435A),
         appBarTheme: AppBarTheme(
-          surfaceTintColor: Colors.grey.shade900,
-          backgroundColor: Colors.grey.shade900,
+          surfaceTintColor: Colors.black,
+          backgroundColor: Colors.black,
           foregroundColor: Colors.white,
           titleTextStyle: const TextStyle(
             color: Colors.white,
@@ -74,7 +75,7 @@ class TikTokApp extends StatelessWidget {
           cursorColor: Color(0xFFE9435A),
         ),
       ),
-      home: const MainNavigationScreen(),
+      home: const ThreadMainNavigationScreen(),
     );
   }
 }

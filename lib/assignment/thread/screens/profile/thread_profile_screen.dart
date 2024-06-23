@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/assignment/thread/model/user.dart';
 import 'package:tiktok_clone/assignment/thread/screens/profile/widgets/thread_persistent_tab_bar.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../model/thread_model.dart';
@@ -85,13 +86,11 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                   leading: const Center(
                     child: FaIcon(
                       FontAwesomeIcons.globe,
-                      color: Colors.black,
                     ),
                   ),
                   actions: [
                     const FaIcon(
                       FontAwesomeIcons.instagram,
-                      color: Colors.black,
                       size: Sizes.size32,
                     ),
                     Gaps.h12,
@@ -118,7 +117,6 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                 const Text(
                                   "Jane",
                                   style: TextStyle(
-                                    color: Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: Sizes.size28,
                                   ),
@@ -128,7 +126,6 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                     const Text(
                                       "jane_mobbin",
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontWeight: FontWeight.normal,
                                         fontSize: Sizes.size18,
                                       ),
@@ -168,7 +165,6 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                         const Text(
                           "Plant enthusiast!",
                           style: TextStyle(
-                            color: Colors.black,
                             fontWeight: FontWeight.normal,
                             fontSize: Sizes.size18,
                           ),
@@ -186,7 +182,7 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                         Sizes.size16,
                                       ),
                                       border: Border.all(
-                                        color: Colors.white,
+                                        color: isDarkMode(context) ? Colors.black : Colors.white,
                                         width: Sizes.size1,
                                       ),
                                     ),
@@ -205,7 +201,7 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                           Sizes.size16,
                                         ),
                                         border: Border.all(
-                                          color: Colors.white,
+                                          color: isDarkMode(context) ? Colors.black : Colors.white,
                                           width: Sizes.size1,
                                         ),
                                       ),
@@ -251,7 +247,6 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                 child: const Text(
                                   'Edit profile',
                                   style: TextStyle(
-                                    color: Colors.black,
                                     fontWeight: FontWeight.w600,
                                     fontSize: Sizes.size16,
                                   ),
@@ -278,7 +273,6 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
                                 child: const Text(
                                   'Share profile',
                                   style: TextStyle(
-                                    color: Colors.black,
                                     fontWeight: FontWeight.w600,
                                     fontSize: Sizes.size16,
                                   ),

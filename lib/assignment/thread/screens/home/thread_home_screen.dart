@@ -56,22 +56,26 @@ class ThreadHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView.separated(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          final model = items[index];
-          return Thread(
-            model: model,
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return Container(
-            color: Colors.grey.shade200,
-            width: double.infinity,
-            height: 1,
-          );
-        },
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: ListView.separated(
+            itemCount: items.length,
+            itemBuilder: (context, index) {
+              final model = items[index];
+              return Thread(
+                model: model,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                color: Colors.grey.shade200,
+                width: double.infinity,
+                height: 1,
+              );
+            },
+          ),
+        ),
       ),
     );
   }

@@ -23,7 +23,7 @@ class NewCommentThread extends StatefulWidget {
 }
 
 class _NewCommentThreadState extends State<NewCommentThread> {
-  XFile? _selectedFile = null;
+  XFile? _selectedFile;
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,6 @@ class _NewCommentThreadState extends State<NewCommentThread> {
                           Text(
                             widget.model.name,
                             style: const TextStyle(
-                              color: Colors.black,
                               fontSize: Sizes.size16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -119,7 +118,6 @@ class _NewCommentThreadState extends State<NewCommentThread> {
                               child: Text(
                                 widget.model.context,
                                 style: const TextStyle(
-                                  color: Colors.black,
                                   fontSize: Sizes.size16,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -165,13 +163,14 @@ class _NewCommentThreadState extends State<NewCommentThread> {
                                 );
 
                                 if (result != null && result is XFile) {
-                                  print("result: $result");
                                   setState(() {
                                     _selectedFile = result;
                                   });
                                 }
                               },
-                              child: const FaIcon(FontAwesomeIcons.paperclip),
+                              child: const FaIcon(
+                                FontAwesomeIcons.paperclip,
+                              ),
                             )
                           : Image.file(File(_selectedFile!.path))
                     ],

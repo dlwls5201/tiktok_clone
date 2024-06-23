@@ -35,7 +35,6 @@ class _InboxScreenState extends State<InboxScreen> {
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
-        backgroundColor: Colors.white,
         title: const Text("Inbox"),
         actions: [
           IconButton(

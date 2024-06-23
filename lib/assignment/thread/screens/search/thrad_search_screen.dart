@@ -5,6 +5,7 @@ import 'package:tiktok_clone/assignment/thread/model/user.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 
 import '../../../../constants/sizes.dart';
+import '../../../../utils.dart';
 
 class ThreadSearchScreen extends StatefulWidget {
   const ThreadSearchScreen({super.key});
@@ -65,7 +66,6 @@ class _ThreadSearchScreenState extends State<ThreadSearchScreen> {
                             Text(
                               user.name,
                               style: const TextStyle(
-                                color: Colors.black,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -89,19 +89,21 @@ class _ThreadSearchScreenState extends State<ThreadSearchScreen> {
                                     margin: const EdgeInsets.only(
                                       right: Sizes.size8,
                                     ),
-                                    child: const CircleAvatar(
+                                    child: CircleAvatar(
                                       radius: 10,
                                       backgroundColor: Colors.black,
                                       foregroundColor: Colors.white,
                                       foregroundImage: NetworkImage(
-                                        "https://visla.kr/wp/wp-content/uploads/2023/07/230705_22.jpg",
+                                        isDarkMode(context)
+                                            ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwJI9bUz3wxt3xho_93tKk3-ce_PkzgoMaOUKBeRLEy-efxE1tUR9FWt1F0xAISu26ygc&usqp=CAU"
+                                            : "https://visla.kr/wp/wp-content/uploads/2023/07/230705_22.jpg",
                                       ),
                                     ),
                                   ),
                                 Text(
                                   "${user.followers} followers",
                                   style: const TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.grey,
                                     fontSize: Sizes.size14,
                                   ),
                                 ),
@@ -129,7 +131,6 @@ class _ThreadSearchScreenState extends State<ThreadSearchScreen> {
                             child: Text(
                               "Follow",
                               style: TextStyle(
-                                color: Colors.black,
                                 fontSize: Sizes.size14,
                               ),
                             ),

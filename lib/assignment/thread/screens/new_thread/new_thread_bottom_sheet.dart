@@ -1,5 +1,5 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../model/thread_model.dart';
@@ -16,8 +16,6 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
   final TextEditingController _postController = TextEditingController();
 
   bool _isWriting = false;
-
-  XFile? _selectedFile = null;
 
   @override
   void initState() {
@@ -55,14 +53,13 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: isDarkMode(context) ? Colors.grey.shade800 : Colors.white,
         appBar: AppBar(
           centerTitle: true,
           scrolledUnderElevation: 0,
           title: const Text(
             "New thread",
             style: TextStyle(
-              color: Colors.black,
               fontSize: Sizes.size20,
               fontWeight: FontWeight.bold,
             ),
@@ -73,7 +70,6 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
             child: const Text(
               "Cancel",
               style: TextStyle(
-                color: Colors.black,
                 fontSize: Sizes.size16,
                 fontWeight: FontWeight.normal,
               ),
@@ -111,7 +107,7 @@ class _NewThreadBottomSheetState extends State<NewThreadBottomSheet> {
                       child: BottomAppBar(
                         elevation: 0,
                         padding: const EdgeInsets.all(0),
-                        color: Colors.white,
+                        color: isDarkMode(context) ? Colors.grey.shade800 : Colors.white,
                         child: Row(
                           children: [
                             Expanded(

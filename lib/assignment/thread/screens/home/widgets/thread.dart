@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utils.dart';
 
 import '../../../model/thread_model.dart';
 import 'thread_info_bottom_sheet.dart';
@@ -65,14 +66,14 @@ class Thread extends StatelessWidget {
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.black,
+                                color: isDarkMode(context)? Colors.white: Colors.black,
                                 border: Border.all(
-                                  color: Colors.white,
+                                  color: isDarkMode(context)? Colors.black: Colors.white,
                                   width: 3,
                                 )),
-                            child: const FaIcon(
+                            child: FaIcon(
                               FontAwesomeIcons.plus,
-                              color: Colors.white,
+                              color: isDarkMode(context)? Colors.black: Colors.white,
                               size: 16,
                             ),
                           ),
@@ -104,7 +105,6 @@ class Thread extends StatelessWidget {
                           Text(
                             model.name,
                             style: const TextStyle(
-                              color: Colors.black,
                               fontSize: Sizes.size16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -133,7 +133,6 @@ class Thread extends StatelessWidget {
                                   child: const FaIcon(
                                     FontAwesomeIcons.ellipsis,
                                     size: Sizes.size16,
-                                    color: Colors.black,
                                   ),
                                 )
                               ],
@@ -149,7 +148,6 @@ class Thread extends StatelessWidget {
                               child: Text(
                                 model.context,
                                 style: const TextStyle(
-                                  color: Colors.black,
                                   fontSize: Sizes.size16,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -274,7 +272,7 @@ class Thread extends StatelessWidget {
                 Text(
                   "${Random().nextInt(100)} replies, ${Random().nextInt(999)} likes",
                   style: const TextStyle(
-                    color: Colors.black54,
+                    color: Colors.grey,
                     fontSize: Sizes.size14,
                     fontWeight: FontWeight.normal,
                   ),
