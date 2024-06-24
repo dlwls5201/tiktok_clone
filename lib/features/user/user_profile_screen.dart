@@ -7,7 +7,13 @@ import '../../constants/Gaps.dart';
 import '../../constants/sizes.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  final String username, tab;
+
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+    required this.tab,
+  });
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -25,6 +31,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: widget.tab == "likes" ? 1 : 0,
       length: 2,
       child: Scaffold(
         body: SafeArea(
@@ -33,7 +40,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               return [
                 SliverAppBar(
                   centerTitle: true,
-                  title: const Text('니꼬'),
+                  title: Text(widget.username),
                   actions: [
                     IconButton(
                       onPressed: _onGearPressed,

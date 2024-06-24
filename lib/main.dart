@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
+import 'package:tiktok_clone/router.dart';
 
-import 'assignment/thread/screens/thread_main_navigation_screen.dart';
 import 'constants/sizes.dart';
-import 'features/authentication/email_screen.dart';
-import 'features/authentication/login_screen.dart';
-import 'features/authentication/username_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  //TODO prevent locate screen
+  /*await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+    ],
+  );*/
+
   runApp(const TikTokApp());
 }
 
@@ -16,9 +21,10 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Tiktok clone',
       themeMode: ThemeMode.system,
+      routerConfig: router,
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.light,
@@ -78,15 +84,6 @@ class TikTokApp extends StatelessWidget {
           cursorColor: Color(0xFFE9435A),
         ),
       ),
-      initialRoute: ThreadMainNavigationScreen.routeName,
-      routes: {
-        SignUpScreen.routeName: (context) => const SignUpScreen(),
-        UsernameScreen.routeName: (context) => const UsernameScreen(),
-        LoginScreen.routeName: (context) => const LoginScreen(),
-        EmailScreen.routeName: (context) => const EmailScreen(),
-
-        ThreadMainNavigationScreen.routeName: (context) => const ThreadMainNavigationScreen(),
-      },
     );
   }
 }

@@ -27,16 +27,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   }
 
   void _onPostVideoButtonTap() {
-    /*Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => Scaffold(
-          appBar: AppBar(
-            title: const Text("Record Video"),
-          ),
-        ),
-        fullscreenDialog: true,
-      ),
-    );*/
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const VideoRecordingScreen(),
@@ -65,7 +55,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const UserProfileScreen(),
+            child: const UserProfileScreen(
+              username: "니꼬",
+              tab: "",
+            ),
           ),
         ],
       ),
