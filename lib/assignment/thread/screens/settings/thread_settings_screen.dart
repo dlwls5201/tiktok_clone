@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-import '../../privacy/thread_privacy_screen.dart';
+import '../privacy/thread_privacy_screen.dart';
 
 class ThreadSettingsScreen extends StatelessWidget {
+  static const routeURL = "settings";
+  static const routeName = "threadSettings";
+
   const ThreadSettingsScreen({super.key});
 
   @override
@@ -32,11 +36,12 @@ class ThreadSettingsScreen extends StatelessWidget {
             leading: const FaIcon(FontAwesomeIcons.lock),
             title: const Text("Privacy"),
             onTap: () {
-              Navigator.of(context).push(
+              /*Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => const ThreadPrivacyScreen(),
                 ),
-              );
+              );*/
+              context.goNamed(ThreadPrivacyScreen.routeName);
             },
           ),
           const ListTile(

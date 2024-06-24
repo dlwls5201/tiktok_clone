@@ -6,7 +6,10 @@ import '../../../../constants/sizes.dart';
 import '../../model/user.dart';
 
 class ThreadActivityScreen extends StatefulWidget {
-  ThreadActivityScreen({super.key});
+  static const routeURL = "activity";
+  static const routeName = "threadActivity";
+
+  const ThreadActivityScreen({super.key});
 
   @override
   State<ThreadActivityScreen> createState() => _ThreadActivityScreenState();

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
 
-import '../../../constants/sizes.dart';
+import '../../../../constants/sizes.dart';
 
 class ThreadPrivacyScreen extends StatefulWidget {
+  static const routeURL = "privacy";
+  static const routeName = "threadPrivacy";
+
   const ThreadPrivacyScreen({super.key});
 
   @override

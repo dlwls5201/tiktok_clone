@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/utils.dart';
 
 import '../../../../../constants/sizes.dart';
@@ -26,18 +29,24 @@ class ThreadPersistentTabBar extends SliverPersistentHeaderDelegate {
           vertical: Sizes.size10,
         ),
         tabs: const [
-          Text(
-            "Threads",
-            style: TextStyle(
-              fontSize: Sizes.size16,
-              fontWeight: FontWeight.w600,
+          SizedBox(
+            height: 47,
+            child: Text(
+              "Threads",
+              style: TextStyle(
+                fontSize: Sizes.size16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
-          Text(
-            "Replies",
-            style: TextStyle(
-              fontSize: Sizes.size16,
-              fontWeight: FontWeight.w600,
+          SizedBox(
+            height: 47,
+            child: Text(
+              "Replies",
+              style: TextStyle(
+                fontSize: Sizes.size16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ],

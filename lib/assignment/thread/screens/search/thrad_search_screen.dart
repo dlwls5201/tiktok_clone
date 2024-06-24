@@ -8,6 +8,9 @@ import '../../../../constants/sizes.dart';
 import '../../../../utils.dart';
 
 class ThreadSearchScreen extends StatefulWidget {
+  static const routeURL = "search";
+  static const routeName = "threadSearch";
+
   const ThreadSearchScreen({super.key});
 
   @override

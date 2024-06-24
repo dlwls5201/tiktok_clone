@@ -5,6 +5,9 @@ import '../../model/user.dart';
 import 'widgets/thread.dart';
 
 class ThreadHomeScreen extends StatelessWidget {
+  static const routeURL = "home";
+  static const routeName = "threadHome";
+
   ThreadHomeScreen({super.key});
 
   final items = [

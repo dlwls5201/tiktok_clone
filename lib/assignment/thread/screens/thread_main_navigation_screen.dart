@@ -9,7 +9,8 @@ import 'home/widgets/thread_nav_tab.dart';
 import 'new_thread/new_thread_bottom_sheet.dart';
 
 class ThreadMainNavigationScreen extends StatefulWidget {
-  static String routeName = "/thread";
+  static const routeURL = "/thread";
+  static const routeName = "threadMain";
 
   const ThreadMainNavigationScreen({super.key});
 
@@ -50,7 +51,7 @@ class _ThreadMainNavigationScreenState extends State<ThreadMainNavigationScreen>
           ),
           Visibility(
             visible: _selectedIndex == 3,
-            child: ThreadActivityScreen(),
+            child: const ThreadActivityScreen(),
           ),
           Visibility(
             visible: _selectedIndex == 4,

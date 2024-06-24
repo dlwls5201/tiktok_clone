@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/assignment/thread/model/user.dart';
 import 'package:tiktok_clone/assignment/thread/screens/profile/widgets/thread_persistent_tab_bar.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
@@ -11,6 +12,9 @@ import '../home/widgets/thread.dart';
 import '../settings/thread_settings_screen.dart';
 
 class ThreadProfileScreen extends StatefulWidget {
+  static const routeURL = "profile";
+  static const routeName = "threadProfile";
+
   const ThreadProfileScreen({super.key});
 
   @override
@@ -66,11 +70,12 @@ class _ThreadProfileScreenState extends State<ThreadProfileScreen> {
   ];
 
   void _onBarsPressed() {
-    Navigator.of(context).push(
+    /*Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const ThreadSettingsScreen(),
       ),
-    );
+    );*/
+    context.goNamed(ThreadSettingsScreen.routeName);
   }
 
   @override

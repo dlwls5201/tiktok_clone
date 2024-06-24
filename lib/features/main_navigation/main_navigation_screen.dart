@@ -11,6 +11,9 @@ import '../videos/video_recording_screen.dart';
 import '../videos/video_timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
+  static const routeURL = "/main";
+  static const routeName = "main";
+
   const MainNavigationScreen({super.key});
 
   @override
