@@ -9,6 +9,8 @@ import 'home/widgets/thread_nav_tab.dart';
 import 'new_thread/new_thread_bottom_sheet.dart';
 
 class ThreadMainNavigationScreen extends StatefulWidget {
+  static String routeName = "/thread";
+
   const ThreadMainNavigationScreen({super.key});
 
   @override
