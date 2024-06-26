@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-class VideoConfig2 extends ChangeNotifier {
+class VideoConfigChangeNotifier extends ChangeNotifier {
   bool autoMute = true;
 
   void toggleMuted() {
@@ -9,4 +9,4 @@ class VideoConfig2 extends ChangeNotifier {
   }
 }
 
-final videoConfig = VideoConfig2();
+final videoConfigChangeNotifier = VideoConfigChangeNotifier();

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
@@ -5,7 +7,8 @@ import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../common/widgets/video_configuration/video_config_2.dart';
+import '../../../common/widgets/video_configuration/video_config_change_notifier.dart';
+import '../../../common/widgets/video_configuration/video_config_value_notifier.dart';
 import '../../../constants/Gaps.dart';
 import 'video_comments.dart';
 
@@ -32,7 +35,7 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
 
   bool _isPaused = false;
 
-  bool _autoMute = videoConfig.autoMute;
+  bool _autoMute = videoConfigValueNotifier.value;
 
   void _onVideoChange() {
     final controllerValue = _videoPlayerController.value;
@@ -68,9 +71,9 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
     _initVideoPlayer();
     _initAnimationController();
 
-    videoConfig.addListener(() {
+    videoConfigValueNotifier.addListener(() {
       setState(() {
-        _autoMute = videoConfig.autoMute;
+        _autoMute = videoConfigValueNotifier.value;
       });
     });
   }
@@ -226,7 +229,9 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
             left: Sizes.size20,
             top: Sizes.size40,
             child: IconButton(
-              onPressed: videoConfig.toggleMuted,
+              onPressed: () => {
+                videoConfigValueNotifier.value = !videoConfigValueNotifier.value
+              },
               icon: FaIcon(
                 _autoMute ? FontAwesomeIcons.volumeOff : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
