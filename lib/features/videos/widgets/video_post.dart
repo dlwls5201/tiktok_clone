@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/common/widgets/video_configuration/vidoe_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:video_player/video_player.dart';
@@ -22,8 +23,7 @@ class VideoPost extends StatefulWidget {
   State<VideoPost> createState() => _VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost>
-    with SingleTickerProviderStateMixin {
+class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMixin {
   final VideoPlayerController _videoPlayerController =
       VideoPlayerController.asset("assets/videos/video.mp4");
 
@@ -202,7 +202,7 @@ class _VideoPostState extends State<VideoPost>
                   Gaps.v24,
                   GestureDetector(
                     onTap: () => _onCommentsTap(context),
-                    child: VideoButton(
+                    child: const VideoButton(
                       icon: FontAwesomeIcons.solidComment,
                       text: "33K",
                     ),
@@ -214,6 +214,19 @@ class _VideoPostState extends State<VideoPost>
                   ),
                 ],
               )),
+          Positioned(
+            left: Sizes.size20,
+            top: Sizes.size40,
+            child: IconButton(
+              onPressed: () {},
+              icon: FaIcon(
+                VideoConfig.of(context).autoMute
+                    ? FontAwesomeIcons.volumeOff
+                    : FontAwesomeIcons.volumeHigh,
+                color: Colors.white,
+              ),
+            ),
+          )
         ],
       ),
     );
