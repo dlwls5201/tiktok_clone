@@ -6,7 +6,7 @@ import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../constants/Gaps.dart';
-import '../../main_navigation/widgets/video_comments.dart';
+import 'video_comments.dart';
 
 class VideoPost extends StatefulWidget {
   final Function onVideoFinished;
