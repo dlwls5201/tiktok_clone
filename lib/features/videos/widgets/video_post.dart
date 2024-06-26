@@ -1,14 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/widgets/video_button.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../common/widgets/video_configuration/video_config_change_notifier.dart';
-import '../../../common/widgets/video_configuration/video_config_value_notifier.dart';
 import '../../../constants/Gaps.dart';
 import 'video_comments.dart';
 
@@ -34,8 +32,6 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
   late final AnimationController _animationController;
 
   bool _isPaused = false;
-
-  bool _autoMute = videoConfigValueNotifier.value;
 
   void _onVideoChange() {
     final controllerValue = _videoPlayerController.value;
@@ -70,12 +66,6 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
     super.initState();
     _initVideoPlayer();
     _initAnimationController();
-
-    videoConfigValueNotifier.addListener(() {
-      setState(() {
-        _autoMute = videoConfigValueNotifier.value;
-      });
-    });
   }
 
   @override
@@ -230,10 +220,12 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
             top: Sizes.size40,
             child: IconButton(
               onPressed: () => {
-                videoConfigValueNotifier.value = !videoConfigValueNotifier.value
+                context.read<VideoConfig>().toggleIsMuted(),
               },
               icon: FaIcon(
-                _autoMute ? FontAwesomeIcons.volumeOff : FontAwesomeIcons.volumeHigh,
+                context.watch<VideoConfig>().isMuted
+                    ? FontAwesomeIcons.volumeOff
+                    : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
             ),
