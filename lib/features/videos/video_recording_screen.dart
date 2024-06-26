@@ -12,6 +12,9 @@ import 'package:tiktok_clone/features/videos/video_preview_screen.dart';
 import '../../constants/sizes.dart';
 
 class VideoRecordingScreen extends StatefulWidget {
+  static const routeName = "postVideo";
+  static const routeURL = "/upload";
+
   const VideoRecordingScreen({super.key});
 
   @override
@@ -285,6 +288,13 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  const Positioned(
+                    top: Sizes.size40,
+                    left: Sizes.size20,
+                    child: CloseButton(
+                      color: Colors.white,
                     ),
                   )
                 ],

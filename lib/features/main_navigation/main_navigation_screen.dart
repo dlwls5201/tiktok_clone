@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/discover/discover_screen.dart';
 import 'package:tiktok_clone/features/inbox/inbox_screen.dart';
 import 'package:tiktok_clone/features/main_navigation/widgets/nav_tab.dart';
@@ -11,30 +12,44 @@ import '../videos/video_recording_screen.dart';
 import '../videos/video_timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  static const routeURL = "/main";
-  static const routeName = "main";
+  static const routeName = "mainNavigation";
 
-  const MainNavigationScreen({super.key});
+  final String tab;
+
+  const MainNavigationScreen({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<MainNavigationScreen> createState() => _MainNavigationScreenState();
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  final List<String> _tabs = [
+    "home",
+    "discover",
+    "xxx",
+    "inbox",
+    "profile",
+  ];
+
+  late int _selectedIndex = _tabs.indexOf(widget.tab);
 
   void _onTap(int index) {
+    context.go("/${_tabs[index]}");
     setState(() {
       _selectedIndex = index;
     });
   }
 
   void _onPostVideoButtonTap() {
-    Navigator.of(context).push(
+    /*Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const VideoRecordingScreen(),
       ),
-    );
+    );*/
+    context.pushNamed(VideoRecordingScreen.routeName);
   }
 
   @override

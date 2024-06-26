@@ -5,6 +5,9 @@ import '../../constants/Gaps.dart';
 import '../../constants/sizes.dart';
 
 class ActivityScreen extends StatefulWidget {
+  static const routeName = "activity";
+  static const routeURL = "/activity";
+
   const ActivityScreen({super.key});
 
   @override

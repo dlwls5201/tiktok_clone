@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/router.dart';
 
 import 'constants/sizes.dart';
@@ -12,6 +13,8 @@ void main() async {
       DeviceOrientation.portraitUp,
     ],
   );*/
+
+  GoRouter.optionURLReflectsImperativeAPIs = true;
 
   runApp(const TikTokApp());
 }

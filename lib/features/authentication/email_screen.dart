@@ -4,16 +4,7 @@ import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/pasword_screen.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
 
-class EmailScreenArgs {
-  final String username;
-
-  EmailScreenArgs({required this.username});
-}
-
 class EmailScreen extends StatefulWidget {
-  static String routeName = "email";
-  static String routeURL = "email";
-
   final String username;
 
   const EmailScreen({
@@ -60,7 +51,11 @@ class _EmailScreenState extends State<EmailScreen> {
   }
 
   void _onSubmit() {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const PasswordScreen()));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const PasswordScreen(),
+      ),
+    );
   }
 
   @override

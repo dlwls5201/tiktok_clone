@@ -10,17 +10,23 @@ import '../../utils.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
-  static const routeURL = "/";
   static const routeName = "signUp";
+  static const routeURL = "/";
 
   const SignUpScreen({super.key});
 
   void onLoginTap(BuildContext context) {
+    context.pushNamed(LoginScreen.routeName);
     context.goNamed(LoginScreen.routeName);
   }
 
   void onEmailTap(BuildContext context) {
-    context.goNamed(UsernameScreen.routeName);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const UsernameScreen(),
+      ),
+    );
   }
 
   @override
@@ -65,27 +71,27 @@ class SignUpScreen extends StatelessWidget {
                       text: "Continue with Apple",
                     )
                   ],
-                  if(orientation == Orientation.landscape)
-                      Row(
-                          children: [
-                            Expanded(
-                              child: GestureDetector(
-                                onTap: () => onEmailTap(context),
-                                child: const AuthButton(
-                                  icon: FaIcon(FontAwesomeIcons.user),
-                                  text: "Use email & password",
-                                ),
-                              ),
+                  if (orientation == Orientation.landscape)
+                    Row(
+                      children: [
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () => onEmailTap(context),
+                            child: const AuthButton(
+                              icon: FaIcon(FontAwesomeIcons.user),
+                              text: "Use email & password",
                             ),
-                            Gaps.h16,
-                            const Expanded(
-                              child: AuthButton(
-                                icon: FaIcon(FontAwesomeIcons.apple),
-                                text: "Continue with Apple",
-                              ),
-                            )
-                          ],
-                      )
+                          ),
+                        ),
+                        Gaps.h16,
+                        const Expanded(
+                          child: AuthButton(
+                            icon: FaIcon(FontAwesomeIcons.apple),
+                            text: "Continue with Apple",
+                          ),
+                        )
+                      ],
+                    )
                 ],
               ),
             ),
