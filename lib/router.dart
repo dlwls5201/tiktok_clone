@@ -4,15 +4,17 @@ import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
+import 'assignment/thread/screens/thread_main_navigation_screen.dart';
+import 'common/widgets/main_navigation/main_navigation_screen.dart';
 import 'features/inbox/activity_screen.dart';
 import 'features/inbox/chat_detail_screen.dart';
 import 'features/inbox/chats_screen.dart';
-import 'common/widgets/main_navigation/main_navigation_screen.dart';
 import 'features/videos/video_recording_screen.dart';
 
 final router = GoRouter(
   //initialLocation: SignUpScreen.routeURL,
-  initialLocation: "/home",
+  //initialLocation: "/home",
+  initialLocation: ThreadMainNavigationScreen.routeURL,
   routes: [
     GoRoute(
       name: SignUpScreen.routeName,
@@ -80,6 +82,13 @@ final router = GoRouter(
           );
         },
       ),
+    ),
+
+    //assignment
+    GoRoute(
+      name: ThreadMainNavigationScreen.routeName,
+      path: ThreadMainNavigationScreen.routeURL,
+      builder: (context, state) => const ThreadMainNavigationScreen(),
     ),
   ],
 );

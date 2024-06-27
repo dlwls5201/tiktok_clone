@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:tiktok_clone/assignment/thread/common/thread_config.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
 import '../privacy/thread_privacy_screen.dart';
@@ -24,6 +26,12 @@ class ThreadSettingsScreen extends StatelessWidget {
           horizontal: Sizes.size16,
         ),
         children: [
+          SwitchListTile.adaptive(
+            value: context.watch<ThreadConfig>().isDarkMode,
+            onChanged: (value) => context.read<ThreadConfig>().toggleIsDartMode(),
+            title: const Text("Dark Mode"),
+            subtitle: const Text("Change Dark Mode"),
+          ),
           const ListTile(
             leading: FaIcon(FontAwesomeIcons.userPlus),
             title: Text("Follow and invite friends"),
