@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tiktok_clone/assignment/thread/common/thread_config.dart';
 import 'package:tiktok_clone/utils.dart';
 
 import '../../../../constants/Gaps.dart';
@@ -90,7 +92,7 @@ class _ThreadActivityScreenState extends State<ThreadActivityScreen>
                     decoration: currentTabLabel == tab
                         ? BoxDecoration(
                             color:
-                                isDarkMode(context) ? Theme.of(context).primaryColor : Colors.black,
+                                isDarkMode(context) || context.read<ThreadConfig>().isDarkMode ? Theme.of(context).primaryColor : Colors.black,
                             borderRadius: BorderRadius.circular(
                               Sizes.size16,
                             ),
