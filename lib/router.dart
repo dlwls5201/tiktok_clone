@@ -13,8 +13,8 @@ import 'features/videos/video_recording_screen.dart';
 
 final router = GoRouter(
   //initialLocation: SignUpScreen.routeURL,
-  //initialLocation: "/home",
-  initialLocation: ThreadMainNavigationScreen.routeURL,
+  initialLocation: "/home",
+  //initialLocation: ThreadMainNavigationScreen.routeURL,
   routes: [
     GoRoute(
       name: SignUpScreen.routeName,
