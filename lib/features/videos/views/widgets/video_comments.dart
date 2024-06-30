@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../constants/Gaps.dart';
-import '../../../constants/sizes.dart';
+import '../../../../constants/Gaps.dart';
+import '../../../../constants/sizes.dart';
 
 class VideoComments extends StatefulWidget {
   const VideoComments({super.key});

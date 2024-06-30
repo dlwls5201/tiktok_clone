@@ -7,9 +7,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tiktok_clone/constants/Gaps.dart';
-import 'package:tiktok_clone/features/videos/video_preview_screen.dart';
+import 'package:tiktok_clone/features/videos/views/video_preview_screen.dart';
 
-import '../../constants/sizes.dart';
+import '../../../constants/sizes.dart';
 
 class VideoRecordingScreen extends StatefulWidget {
   static const routeName = "postVideo";

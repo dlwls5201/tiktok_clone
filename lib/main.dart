@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok_clone/assignment/thread/common/thread_config.dart';
-import 'package:tiktok_clone/common/widgets/video_configuration/video_config.dart';
+import 'package:tiktok_clone/features/videos/repos/playback_config_repo.dart';
+import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/router.dart';
 
 import 'constants/sizes.dart';
@@ -17,16 +19,23 @@ void main() async {
     ],
   );*/
 
+  // 라우터 이동 시, web url 변경 할 수 있게 해주는 함수
   GoRouter.optionURLReflectsImperativeAPIs = true;
+
+  final preferences = await SharedPreferences.getInstance();
+  final repository = PlaybackConfigRepository(preferences);
 
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        /*ChangeNotifierProvider(
           create: (context) => VideoConfig(),
-        ),
+        ),*/
         ChangeNotifierProvider(
           create: (context) => ThreadConfig(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PlaybackConfigViewModel(repository),
         ),
       ],
       child: const TikTokApp(),

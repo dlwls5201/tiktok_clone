@@ -9,7 +9,7 @@ import 'common/widgets/main_navigation/main_navigation_screen.dart';
 import 'features/inbox/activity_screen.dart';
 import 'features/inbox/chat_detail_screen.dart';
 import 'features/inbox/chats_screen.dart';
-import 'features/videos/video_recording_screen.dart';
+import 'features/videos/views/video_recording_screen.dart';
 
 final router = GoRouter(
   //initialLocation: SignUpScreen.routeURL,
