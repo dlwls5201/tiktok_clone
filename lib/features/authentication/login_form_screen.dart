@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/view_models/login_view_mode.dart';
 import 'package:tiktok_clone/features/authentication/widgets/form_button.dart';
-import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
 import '../../constants/Gaps.dart';
 
-class LoginFormScreen extends StatefulWidget {
+class LoginFormScreen extends ConsumerStatefulWidget {
   const LoginFormScreen({super.key});
 
   @override
-  State<LoginFormScreen> createState() => _LoginFormScreenState();
+  ConsumerState<LoginFormScreen> createState() => _LoginFormScreenState();
 }
 
-class _LoginFormScreenState extends State<LoginFormScreen> {
+class _LoginFormScreenState extends ConsumerState<LoginFormScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Map<String, String> formData = {};
@@ -23,13 +23,12 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     if (currentState != null) {
       if (currentState.validate()) {
         currentState.save();
-        /*Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-            builder: (context) => const InterestScreen(),
-          ),
-          (route) => false,
-        );*/
-        context.goNamed(InterestScreen.routeName);
+        ref.read(loginProvider.notifier).login(
+              formData["email"]!,
+              formData["password"]!,
+              context,
+            );
+        // context.goNamed(InterestScreen.routeName);
       }
     }
   }
@@ -105,7 +104,10 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
               Gaps.v28,
               GestureDetector(
                 onTap: _onSubmitTap,
-                child: const FormButton(title: "Login", disabled: false),
+                child: FormButton(
+                  title: "Login",
+                  disabled: ref.watch(loginProvider).isLoading,
+                ),
               ),
             ],
           ),
