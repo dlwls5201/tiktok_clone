@@ -1,81 +1,42 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../common/widgets/video_configuration/video_config.dart';
-import '../../common/widgets/video_configuration/video_config_value_notifier.dart';
 import '../videos/view_models/playback_config_vm.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notifications = false;
-
-  void _onNotificationsChanged(bool? newValue) {
-    if (newValue == null) return;
-    setState(() {
-      _notifications = newValue;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
       ),
       body: ListView(
         children: [
-          /*AnimatedBuilder(
-            animation: videoConfigValueNotifier,
-            builder: (BuildContext context, Widget? child) => SwitchListTile.adaptive(
-              value: videoConfigValueNotifier.value,
-              onChanged: (value) {
-                videoConfigValueNotifier.value = !videoConfigValueNotifier.value;
-              },
-              title: const Text("Auto Mute"),
-              subtitle: const Text("Videos will be muted by default."),
-            ),
-          ),*/
-          /*ValueListenableBuilder(
-            valueListenable: videoConfigValueNotifier,
-            builder: (context, value, child) => SwitchListTile.adaptive(
-              value: value,
-              onChanged: (value) {
-                videoConfigValueNotifier.value = !videoConfigValueNotifier.value;
-              },
-              title: const Text("Auto Mute"),
-              subtitle: const Text("Videos will be muted by default."),
-            ),
-          ),*/
           SwitchListTile.adaptive(
-            value: context.watch<PlaybackConfigViewModel>().muted,
-            onChanged: (value) => context.read<PlaybackConfigViewModel>().setMuted(value),
+            value: ref.watch(playbackConfigProvider).muted,
+            onChanged: (value) => ref.read(playbackConfigProvider.notifier).setMuted(value),
             title: const Text("Auto Mute"),
             subtitle: const Text("Video will be muted by default."),
           ),
           SwitchListTile.adaptive(
-            value: context.watch<PlaybackConfigViewModel>().autoplay,
-            onChanged: (value) =>
-                context.read<PlaybackConfigViewModel>().setAutoplay(value),
+            value: ref.watch(playbackConfigProvider).autoplay,
+            onChanged: (value) => ref.read(playbackConfigProvider.notifier).setAutoplay(value),
             title: const Text("Autoplay"),
             subtitle: const Text("Video will start playing automatically."),
           ),
           SwitchListTile.adaptive(
-            value: _notifications,
-            onChanged: _onNotificationsChanged,
+            value: false,
+            onChanged: (value) {},
             title: const Text("Enable notifications"),
             subtitle: const Text("They will be cute."),
           ),
           CheckboxListTile(
             activeColor: Colors.black,
-            value: _notifications,
-            onChanged: _onNotificationsChanged,
+            value: false,
+            onChanged: (value) {},
             title: const Text("Marketing emails"),
             subtitle: const Text("We won't spam you."),
           ),

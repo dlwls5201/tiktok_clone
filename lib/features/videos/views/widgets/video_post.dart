@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 import 'package:tiktok_clone/features/videos/views/widgets/video_button.dart';
@@ -10,7 +10,7 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import '../../../../constants/Gaps.dart';
 
-class VideoPost extends StatefulWidget {
+class VideoPost extends ConsumerStatefulWidget {
   final Function onVideoFinished;
   final int index;
 
@@ -21,13 +21,11 @@ class VideoPost extends StatefulWidget {
   });
 
   @override
-  State<VideoPost> createState() => _VideoPostState();
+  VideoPostState createState() => VideoPostState();
 }
 
-class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMixin {
-  final VideoPlayerController _videoPlayerController =
-      VideoPlayerController.asset("assets/videos/video.mp4");
-
+class VideoPostState extends ConsumerState<VideoPost> with SingleTickerProviderStateMixin {
+  late final VideoPlayerController _videoPlayerController;
   final Duration _animationDuration = const Duration(milliseconds: 200);
   late final AnimationController _animationController;
 
@@ -45,6 +43,7 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
   }
 
   void _initVideoPlayer() async {
+    _videoPlayerController = VideoPlayerController.asset("assets/videos/video.mp4");
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
     _videoPlayerController.addListener(_onVideoChange);
@@ -66,12 +65,8 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
     super.initState();
     _initVideoPlayer();
     _initAnimationController();
-    _playbackConfigChanged();
-    context.read<PlaybackConfigViewModel>().addListener(_playbackConfigChanged);
-  }
 
-  void _playbackConfigChanged() {
-    final muted = context.read<PlaybackConfigViewModel>().muted;
+    final muted = ref.read(playbackConfigProvider).muted;
     if (muted) {
       _videoPlayerController.setVolume(0);
     } else {
@@ -86,12 +81,23 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
     super.dispose();
   }
 
+  void _onPlaybackConfigChanged() {
+    final muted = ref.read(playbackConfigProvider).muted;
+    ref.read(playbackConfigProvider.notifier).setMuted(!muted);
+
+    if (!muted) {
+      _videoPlayerController.setVolume(0);
+    } else {
+      _videoPlayerController.setVolume(1);
+    }
+  }
+
   void _onVisibilityChanged(VisibilityInfo info) {
     if (!mounted) return;
 
     if (info.visibleFraction == 1) {
       if (!_isPaused && !_videoPlayerController.value.isPlaying) {
-        final autoplay = context.read<PlaybackConfigViewModel>().autoplay;
+        final autoplay = ref.read(playbackConfigProvider).autoplay;
         if (autoplay) {
           _videoPlayerController.play();
         }
@@ -237,16 +243,12 @@ class _VideoPostState extends State<VideoPost> with SingleTickerProviderStateMix
             top: Sizes.size40,
             child: IconButton(
               icon: FaIcon(
-                context.watch<PlaybackConfigViewModel>().muted
+                ref.watch(playbackConfigProvider).muted
                     ? FontAwesomeIcons.volumeOff
                     : FontAwesomeIcons.volumeHigh,
                 color: Colors.white,
               ),
-              onPressed: () => {
-                context.read<PlaybackConfigViewModel>().setMuted(
-                      !context.read<PlaybackConfigViewModel>().muted,
-                    ),
-              },
+              onPressed: _onPlaybackConfigChanged,
             ),
           )
         ],
