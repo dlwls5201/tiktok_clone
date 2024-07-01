@@ -1,21 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:tiktok_clone/assignment/thread/common/thread_config.dart';
+import 'package:tiktok_clone/assignment/thread/screens/authentication/thread_login_in_screen.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
+import '../../../../features/authentication/repos/authentication_repo.dart';
 import '../privacy/thread_privacy_screen.dart';
 
-class ThreadSettingsScreen extends StatelessWidget {
+class ThreadSettingsScreen extends ConsumerWidget {
   static const routeURL = "settings";
   static const routeName = "threadSettings";
 
   const ThreadSettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -26,12 +27,12 @@ class ThreadSettingsScreen extends StatelessWidget {
           horizontal: Sizes.size16,
         ),
         children: [
-          SwitchListTile.adaptive(
+          /*SwitchListTile.adaptive(
             value: context.watch<ThreadConfig>().isDarkMode,
             onChanged: (value) => context.read<ThreadConfig>().toggleIsDartMode(),
             title: const Text("Dark Mode"),
             subtitle: const Text("Change Dark Mode"),
-          ),
+          ),*/
           const ListTile(
             leading: FaIcon(FontAwesomeIcons.userPlus),
             title: Text("Follow and invite friends"),
@@ -83,7 +84,10 @@ class ThreadSettingsScreen extends StatelessWidget {
                       icon: const Text("No"),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        ref.read(authRepo).signOut();
+                        context.goNamed(ThreadLoginScreen.routeName);
+                      },
                       child: const Text("Yes"),
                     ),
                   ],
@@ -110,7 +114,10 @@ class ThreadSettingsScreen extends StatelessWidget {
                       icon: const Text("No"),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
+                      onPressed: () {
+                        ref.read(authRepo).signOut();
+                        context.goNamed(ThreadLoginScreen.routeName);
+                      },
                       child: const Text("Yes"),
                     ),
                   ],

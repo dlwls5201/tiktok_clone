@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/assignment/thread/screens/authentication/thread_login_in_screen.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
 import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:tiktok_clone/features/onboarding/interest_screen.dart';
 
+import 'assignment/thread/screens/authentication/thread_sign_up_screen.dart';
 import 'assignment/thread/screens/thread_main_navigation_screen.dart';
 import 'common/widgets/main_navigation/main_navigation_screen.dart';
 import 'features/authentication/repos/authentication_repo.dart';
@@ -25,6 +27,10 @@ final routerProvider = Provider((ref) {
             state.matchedLocation != LoginScreen.routeURL) {
           return SignUpScreen.routeURL;
         }
+        /*if (state.matchedLocation != ThreadSignUpScreen.routeURL &&
+            state.matchedLocation != ThreadLoginScreen.routeURL) {
+          return ThreadLoginScreen.routeURL;
+        }*/
       }
       return null;
     },
@@ -80,11 +86,11 @@ final routerProvider = Provider((ref) {
           transitionDuration: const Duration(milliseconds: 200),
           child: const VideoRecordingScreen(),
           transitionsBuilder: (
-              context,
-              animation,
-              secondaryAnimation,
-              child,
-              ) {
+            context,
+            animation,
+            secondaryAnimation,
+            child,
+          ) {
             final position = Tween(
               begin: const Offset(0, 1),
               end: Offset.zero,
@@ -98,6 +104,16 @@ final routerProvider = Provider((ref) {
       ),
 
       //assignment
+      GoRoute(
+        name: ThreadSignUpScreen.routeName,
+        path: ThreadSignUpScreen.routeURL,
+        builder: (context, state) => const ThreadSignUpScreen(),
+      ),
+      GoRoute(
+        name: ThreadLoginScreen.routeName,
+        path: ThreadLoginScreen.routeURL,
+        builder: (context, state) => const ThreadLoginScreen(),
+      ),
       GoRoute(
         name: ThreadMainNavigationScreen.routeName,
         path: ThreadMainNavigationScreen.routeURL,
