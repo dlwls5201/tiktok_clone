@@ -4,7 +4,7 @@ import 'package:tiktok_clone/constants/Gaps.dart';
 
 import '../../../../constants/sizes.dart';
 import '../../../../features/authentication/view_models/login_view_mode.dart';
-import '../../../../features/authentication/view_models/signup_view_mode.dart';
+import '../../../../features/authentication/view_models/signup_view_model.dart';
 import '../../../../features/authentication/widgets/form_button.dart';
 
 class ThreadSignUpScreen extends ConsumerStatefulWidget {

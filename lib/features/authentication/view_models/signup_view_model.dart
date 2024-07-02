@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok_clone/features/user/view_models/users_view_model.dart';
 
 import '../../../utils.dart';
 import '../../onboarding/interest_screen.dart';
@@ -19,11 +20,14 @@ class SignUpViewModel extends AsyncNotifier<void> {
   Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
     final form = ref.read(signUpForm);
-    state = await AsyncValue.guard(
-          () async => await _authRepo.emailSignUp(
-        form["email"],
-        form["password"],
-      ),
+    final users = ref.read(usersProvider.notifier);
+    state = await AsyncValue.guard(() async {
+        final userCredential = await _authRepo.emailSignUp(
+          form["email"],
+          form["password"],
+        );
+        await users.createProfile(userCredential);
+      },
     );
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
@@ -36,5 +40,5 @@ class SignUpViewModel extends AsyncNotifier<void> {
 final signUpForm = StateProvider((ref) => {});
 
 final signUpProvider = AsyncNotifierProvider<SignUpViewModel, void>(
-      () => SignUpViewModel(),
+  () => SignUpViewModel(),
 );
