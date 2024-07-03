@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:video_player/video_player.dart';
 
-import '../view_models/timeline_vm.dart';
+import '../view_models/upload_video_view_model.dart';
 
 class VideoPreviewScreen extends ConsumerStatefulWidget {
   final XFile video;
@@ -60,7 +60,10 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
   }
 
   void _onUploadPressed() async {
-    ref.read(timelineProvider.notifier).uploadVideo();
+    ref.read(uploadVideoProvider.notifier).uploadVideo(
+          File(widget.video.path),
+          context,
+        );
   }
 
   @override
@@ -74,16 +77,12 @@ class VideoPreviewScreenState extends ConsumerState<VideoPreviewScreen> {
             IconButton(
               onPressed: _saveToGallery,
               icon: FaIcon(
-                _savedVideo
-                    ? FontAwesomeIcons.check
-                    : FontAwesomeIcons.download,
+                _savedVideo ? FontAwesomeIcons.check : FontAwesomeIcons.download,
               ),
             ),
           IconButton(
-            onPressed: ref.watch(timelineProvider).isLoading
-                ? () {}
-                : _onUploadPressed,
-            icon: ref.watch(timelineProvider).isLoading
+            onPressed: ref.watch(uploadVideoProvider).isLoading ? () {} : _onUploadPressed,
+            icon: ref.watch(uploadVideoProvider).isLoading
                 ? const CircularProgressIndicator()
                 : const FaIcon(FontAwesomeIcons.cloudArrowUp),
           )
