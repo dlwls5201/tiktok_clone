@@ -11,6 +11,8 @@ import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import '../../utils.dart';
 import 'login_screen.dart';
 
+import 'package:tiktok_clone/generated/l10n.dart';
+
 class SignUpScreen extends ConsumerWidget {
   static const routeName = "signUp";
   static const routeURL = "/";
@@ -41,21 +43,21 @@ class SignUpScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  const Text(
-                    "Sign up for TikTok",
-                    style: TextStyle(
+                  Text(
+                    S.of(context).signUpTitle("TikTok"),
+                    style: const TextStyle(
                       fontSize: Sizes.size24,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
                   Gaps.v20,
-                  const Text(
+                  Text(
                     style: TextStyle(
                       fontSize: Sizes.size16,
                       color: Colors.black45,
                     ),
                     textAlign: TextAlign.center,
-                    "Create a profile, follow other accounts, make your own videos, and more",
+                    S.of(context).signUpDescription,
                   ),
                   Gaps.v40,
                   if (orientation == Orientation.portrait) ...[
@@ -68,9 +70,7 @@ class SignUpScreen extends ConsumerWidget {
                     ),
                     Gaps.v16,
                     GestureDetector(
-                      onTap: () => ref
-                          .read(socialAuthProvider.notifier)
-                          .githubSingIn(context),
+                      onTap: () => ref.read(socialAuthProvider.notifier).githubSingIn(context),
                       child: const AuthButton(
                         icon: FaIcon(FontAwesomeIcons.github),
                         text: "Continue with Github",
@@ -91,9 +91,7 @@ class SignUpScreen extends ConsumerWidget {
                         ),
                         Gaps.h16,
                         GestureDetector(
-                          onTap: () => ref
-                              .read(socialAuthProvider.notifier)
-                              .githubSingIn(context),
+                          onTap: () => ref.read(socialAuthProvider.notifier).githubSingIn(context),
                           child: const AuthButton(
                             icon: FaIcon(FontAwesomeIcons.github),
                             text: "Continue with Github",
